@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="egoi_autoresponders_send" instance="Egoi\Marketing\Model\Autoresponders" method="send">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="egoi_sync" instance="Egoi\Marketing\Model\Egoi" method="sync">
+            <schedule>0 3 * * 0</schedule>
+        </job>
+        <job name="egoi_sync_bulk" instance="Egoi\Marketing\Model\Egoi" method="addSubscriberBulk">
+            <schedule>0 3 * * 1</schedule>
+        </job>
+        <job name="egoi_sync_bulk_daily" instance="Egoi\Marketing\Model\Egoi" method="addSubscriberBulkDaily">
+            <schedule>0 3 * * *</schedule>
+        </job>
+        <job name="egoi_sync_catalog" instance="Egoi\Marketing\Cron\SyncCatalog" method="execute">
+            <schedule>0 4 * * *</schedule>
+        </job>
+        <job name="egoi_sync_customer_data" instance="Egoi\Marketing\Model\Egoi" method="syncCustomerData">
+            <schedule>0 3 * * 2</schedule>
+        </job>
+        <job name="egoi_export_bulk" instance="Egoi\Marketing\Model\Egoi" method="exportBulk">
+            <schedule>15 3 1 1 1</schedule>
+        </job>
+    </group>
+</config>

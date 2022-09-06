@@ -1,0 +1,35 @@
+<?xml version="1.0"?><!--
+
+/**
+ * E-goi.com
+ * @title      E-Goi Multi-channel Marketing
+ * @package    E-Goi
+ * @copyright  Copyright (c) 2012-2018 E-Goi - http://e-goi.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Egoi_Marketing::config" title="Egoi - Multi Channel Marketing"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::marketing">
+                    <resource id="Egoi_Marketing::egoi" title="Egoi - Multi Channel Marketing" sortOrder="110">
+                        <resource id="Egoi_Marketing::account" title="Account" sortOrder="10"/>
+                        <resource id="Egoi_Marketing::lists" title="Lists" sortOrder="20"/>
+                        <resource id="Egoi_Marketing::autoresponders" title="Autoresponders SMS" sortOrder="30"/>
+                        <resource id="Egoi_Marketing::events" title="Autoresponders Log" sortOrder="40"/>
+                        <resource id="Egoi_Marketing::subscribers" title="Subscribers" sortOrder="50"/>
+                        <resource id="Egoi_Marketing::conversions" title="Conversions" sortOrder="60"/>
+                        <resource id="Egoi_Marketing::support" title="Support" sortOrder="100"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

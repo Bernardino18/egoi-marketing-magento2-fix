@@ -1,0 +1,26 @@
+<?xml version="1.0"?><!--
+  ~
+  ~ Licentia, Unipessoal LDA
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the EULA
+  ~ that is bundled with this package in the file LICENSE.txt.
+  ~ It is also available through the world-wide-web at this URL:
+  ~ https://creativecommons.org/licenses/by-nc-nd/4.0/
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+  ~ @license    https://creativecommons.org/licenses/by-nc-nd/4.0/
+  ~ @modified   24-03-2018 23:50 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="admin_system_config_changed_section_egoi">
+        <observer name="egoi_webspush" instance="Egoi\Marketing\Observer\Admin\AdminConfig"/>
+    </event>
+</config>

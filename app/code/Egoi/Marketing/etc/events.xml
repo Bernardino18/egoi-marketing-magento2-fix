@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_shipment_save_after">
+        <observer name="egoi_autoresponder_new_shipment" instance="Egoi\Marketing\Observer\NewOrderDocument"/>
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="egoi_autoresponder_new_invoice" instance="Egoi\Marketing\Observer\NewOrderDocument"/>
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="egoi_autoresponder_new_creditmemo" instance="Egoi\Marketing\Observer\NewOrderDocument"/>
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="egoi_autoresponder_change_status" instance="Egoi\Marketing\Observer\ChangeStatus"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="egoi_auto_add" instance="Egoi\Marketing\Observer\AddToAutoList"/>
+        <observer name="egoi_new_order" instance="Egoi\Marketing\Observer\NewOrder"/>
+        <observer name="egoi_new_conversion" instance="Egoi\Marketing\Observer\NewConversion"/>
+    </event>
+    <event name="customer_register_success">
+        <observer name="egoi_auto_add_customer" instance="Egoi\Marketing\Observer\NewCustomer"/>
+    </event>
+</config>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?><!--
+
+/**
+ * E-goi.com
+ * @title      E-Goi Multi-channel Marketing
+ * @package    E-Goi
+ * @copyright  Copyright (c) 2012-2018 E-Goi - http://e-goi.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Egoi_Marketing::egoi" title="E-Goi Marketing" module="Egoi_Marketing" sortOrder="30" parent="Magento_Backend::marketing" resource="Egoi_Marketing::egoi"/>
+        <add id="Egoi_Marketing::account" title="Account" module="Egoi_Marketing" sortOrder="20" parent="Egoi_Marketing::egoi" action="egoi/account" resource="Egoi_Marketing::account"/>
+        <add id="Egoi_Marketing::lists" title="List / Map Attributes" module="Egoi_Marketing" sortOrder="30" parent="Egoi_Marketing::egoi" action="egoi/lists" resource="Egoi_Marketing::lists"/>
+        <add id="Egoi_Marketing::autoresponders" title="Autoresponders SMS" module="Egoi_Marketing" sortOrder="40" parent="Egoi_Marketing::egoi" action="egoi/autoresponders" resource="Egoi_Marketing::autoresponders"/>
+        <add id="Egoi_Marketing::events" title="Autoresponders Logs" module="Egoi_Marketing" sortOrder="50" parent="Egoi_Marketing::egoi" action="egoi/events" resource="Egoi_Marketing::events"/>
+        <add id="Egoi_Marketing::subscribers" title="Subscribers" module="Egoi_Marketing" sortOrder="60" parent="Egoi_Marketing::egoi" action="egoi/subscriber" resource="Egoi_Marketing::subscribers"/>
+        <add id="Egoi_Marketing::conversions" title="Conversions" module="Egoi_Marketing" sortOrder="65" parent="Egoi_Marketing::egoi" action="egoi/conversions" resource="Egoi_Marketing::conversions"/>
+        <add id="Egoi_Marketing::support" title="Support" module="Egoi_Marketing" sortOrder="70" parent="Egoi_Marketing::egoi" action="egoi/support" resource="Egoi_Marketing::support"/>
+    </menu>
+</config>

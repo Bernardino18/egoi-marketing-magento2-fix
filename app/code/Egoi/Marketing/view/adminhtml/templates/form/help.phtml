@@ -1,0 +1,64 @@
+<?php
+
+$event = $this->getEvent();
+
+?>
+<h3><?php echo __('Tags below will be replaced with real values when sending the text message') ?></h3>
+<?php if ($event == 'shipment_new'): ?>
+    <div class="grid ">
+        <h2><?php echo __('New Shipment (with Tracking Number)') ?></h2>
+        <table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+            <thead>
+            <tr class="headings">
+                <th class=" no-link" style="width:200px;"><span class="nobr"><?php echo __('Variable') ?></span></th>
+                <th class=" no-link"><span class="nobr"><?php echo __('Value') ?></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="a-right">{{track_title}}</td>
+                <td class="a-left"><?php echo __('Tracking Title') ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{{track_code}}</td>
+                <td class="a-left"><?php echo __('Tracking Code') ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{{order_id}}</td>
+                <td class="a-left"><?php echo __('Order ID') ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
+
+<div class="grid ">
+    <h2><?php echo __('General Variables)') ?></h2>
+    <table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link" style="width:200px;"><span class="nobr"><?php echo __('Variable') ?></span></th>
+            <th class=" no-link"><span class="nobr"><?php echo __('Value') ?></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->getVariables() as $var):
+
+            if (!isset($var['label'])) {
+                continue;
+            }
+
+            ?>
+            <tr>
+                <td colspan="2" style="background-color:#f2f2f2"><h2><?php echo __($var['label']) ?></h2></td>
+            </tr>
+
+            <?php foreach ($var['value'] as $key => $value): ?>
+            <tr>
+                <td class="a-right"><?php echo $value['value'] ?></td>
+                <td class="a-left"><?php echo __($value['label']) ?></td>
+            </tr>
+        <?php endforeach; ?><?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

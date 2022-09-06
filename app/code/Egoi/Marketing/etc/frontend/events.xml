@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="egoi_track_engage" instance="Egoi\Marketing\Observer\EgoiTrackSuccessPage"/>
+    </event>
+    <event name="controller_action_predispatch_pagseguro_direct_success">
+        <observer name="egoi_oag_seguro" instance="Egoi\Marketing\Observer\PagSeguroOrder"/>
+    </event>
+    <event name="controller_action_predispatch">
+        <observer name="egoi_conversions_init" instance="Egoi\Marketing\Observer\ConversionInit"/>
+    </event>
+    <event name="customer_login">
+        <observer name="egoi_set_cookie_login" instance="Egoi\Marketing\Observer\NewLogin"/>
+    </event>
+    <event name="customer_logout">
+        <observer name="egoi_set_cookie_logout" instance="Egoi\Marketing\Observer\NewLogout"/>
+    </event>
+</config>

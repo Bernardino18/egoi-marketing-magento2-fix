@@ -1,0 +1,121 @@
+<?php
+
+/** @var \Egoi\Marketing\Block\Track $this */
+
+/** @var \Egoi\Marketing\Block\Track $block */
+$account = $block->getAccount();
+
+/** @var \Egoi\Marketing\Helper\Data $helper */
+$helper = $this->helper('\Egoi\Marketing\Helper\Data');
+if ($account->getClienteId()) {
+
+    if ($helper->isTrackAvailable($block->getStoreId())) {
+
+        $page = $block->getRequest()->getFullActionName();
+
+        $listId = $helper->getListId();
+        ?>
+        <!-- EGOI TRACKING CODE -->
+        <script type="text/javascript">
+            //<![CDATA[
+
+            function _egoiReadCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
+                return null;
+            }
+
+            var _egoiaq = _egoiaq || [];
+            var _egoiCartUpdate = setInterval(function () {
+                if (localStorage['mage-cache-storage']) {
+
+                    clearInterval(_egoiCartUpdate);
+                    setTimeout(function () {
+
+                        var u = "https://egoimmerce.e-goi.com/";
+                        _egoiaq.push(['setClientId', "<?php echo $account->getClienteId() ?>"]);
+                        _egoiaq.push(['setSubscriber', _egoiReadCookie('<?= \Egoi\Marketing\Helper\Data::EGOI_COOKIE_NAME ?>')]);
+                        _egoiaq.push(['setListId', "<?php echo $listId; ?>"]);
+                        _egoiaq.push(['setTrackerUrl', u + 'collect']);
+
+                        <?php if($page != 'checkout_onepage_success'): ?>
+
+                        if (document.querySelector("meta[property='og:type']") &&
+                            document.querySelector("meta[property='og:type']").getAttribute('content') === 'product') {
+
+                            if (document.querySelector("div[itemprop='sku']") &&
+                                document.querySelector("meta[property='og:title']") &&
+                                document.querySelector("meta[property='product:price:amount']")
+                            ) {
+                                _egoiaq.push(['setEcommerceView',
+                                    document.querySelector("div[itemprop='sku']").innerHTML,
+                                    document.querySelector("meta[property='og:title']").getAttribute('content'),
+                                    "",
+                                    document.querySelector("meta[property='product:price:amount']").getAttribute('content'),
+                                ]);
+                            }
+                        }
+
+                        if (document.querySelector("body.catalog-category-view")) {
+                            _egoiaq.push(['setEcommerceView', false, false, document.title,]);
+                        }
+
+                        if (localStorage['mage-cache-storage'] !== '{}') {
+                            var cart = JSON.parse(localStorage.getItem('mage-cache-storage')).cart;
+                            if (cart) {
+                                if (cart.items) {
+                                    for (var key in cart.items) {
+                                        _egoiaq.push(['addEcommerceItem', cart.items[key]['product_id'], cart.items[key]['product_name'], false, cart.items[key]['product_price_value'], cart.items[key]['qty']]);
+                                    }
+                                    _egoiaq.push(['trackEcommerceCartUpdate', cart.subtotalAmount]);
+                                }
+                            }
+                        }
+
+                        <?php if ($this->getRequest()->getActionName() == 'noRoute') :?>
+                        _egoiaq.push(['setDocumentTitle', '404/URL = ' + String(document.location.pathname + document.location.search).replace(/\//g, "%2f") + '/From = ' + String(document.referrer).replace(/\//g, "%2f")]);
+                        <?php endif; ?>
+
+                        <?php echo "\n"; ?>
+
+                        <?php endif; ?>
+
+                        <?php if($page == 'checkout_onepage_success'): ?>
+                        <?php echo $this->getOrdersTrackingCode() ?>
+                        <?php endif; ?>
+
+                        _egoiaq.push(['trackPageView']);
+                        _egoiaq.push(['enableLinkTracking']);
+                        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                        g.type = 'text/javascript';
+                        g.defer = true;
+                        g.async = true;
+                        g.src = u + 'egoimmerce.js';
+                        s.parentNode.insertBefore(g, s);
+                    }, 1000);
+                }
+            }, 1500);
+            //]]>
+        </script><!-- END EGOI TRACKING CODE -->
+        <?php
+    }
+    if ($helper->getScopeConfig()->getValue('egoi/info/webpush')) {
+        ?>
+        <script type="text/javascript"> var _egoiwp = _egoiwp || {};
+            (function () {
+                var u = "https://cdn-static.egoiapp2.com/";
+                _egoiwp.code = "<?= $helper->getScopeConfig()->getValue('egoi/info/webpush') ?>";
+                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                g.type = 'text/javascript';
+                g.defer = true;
+                g.async = true;
+                g.src = u + 'webpush.js';
+                s.parentNode.insertBefore(g, s);
+            })(); </script>
+    <?php }
+}

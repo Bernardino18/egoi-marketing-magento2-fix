@@ -1,0 +1,207 @@
+<?php
+$data = $this->getCompany();
+$catalogs = $this->getCatalogs();
+
+?>
+<style type="text/css">
+    th span {
+        padding: 4px;
+    }
+
+    .grid td {
+        padding: 10px;
+    }
+
+    .dashboard-item td {
+
+        padding: 10px !important;
+    }
+
+    .dashboard-item {
+        margin-bottom: 2rem;
+        border: 1px solid #dedede;
+    }
+
+    .dashboard-item-title {
+        padding: 5px;
+        background-color: #f7f3eb;
+    }
+</style>
+
+<div class="grid " style="width:50%; margin-left: 1%; float: left">
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('Account Data') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <?php
+                $i = 0;
+                foreach ($data->getData() as $key => $info):
+                    if ($key == 'credits' || $key == 'account_id' || $key == 'cron' || $key == 'notify_user') {
+                        continue;
+                    }
+                    ?>
+                    <tr class="<?php echo $i % 2 ? 'even' : '' ?>">
+                        <td class="col-customer"><?php echo ucwords(str_replace('_', ' ', $key)); ?></td>
+                        <td class="col-customer"><?php echo $info; ?></td>
+                    </tr>
+                    <?php $i++; ?><?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="grid " style="width:23%; margin-left: 1%; float: left">
+
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('E-Goi Catalogs Management') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+
+                <?php foreach ($catalogs as $storeId => $catalog): ?>
+                    <tr>
+                        <td><strong><?= __('Store View') ?></strong></td>
+                        <td>
+                            <?= $catalog ?> <a target="_blank" href="<?= $this->getUrl(
+                                'adminhtml/system_config/edit',
+                                ['section' => 'egoi', 'store' => $storeId]
+                            ) ?>">[<?= __('Configure') ?>]</a>
+
+                        </td>
+                    </tr>
+
+
+                <?php endforeach; ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('Sync Catalog Products') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <tr>
+                    <td>
+                        Catalog Data is synced everyday at 4am
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->getUrl('*/*/products'); ?>"><?php echo __(
+                                'Click here to sync Magento Catalog with E-Goi now.'
+                            ) ?> </a><br><em><?php echo __('This process may take a while') ?></em>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="grid " style="width:23%; margin-left: 1%; float: right">
+
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title" style="background-color: #41362f; color:white;"><?php echo __(
+                'Extension Version'
+            ) ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <tr>
+                    <td><?php echo $this->getVersion(); ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('Push Magento Subscribers') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->getUrl('*/*/bulk'); ?>"><?php echo __(
+                                'Click here to sync Magento Subscribers.'
+                            ) ?> </a><br><em><?php echo __(
+                                'This process will run in background and may take a while'
+                            ) ?></em>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->getUrl('*/*/bulk', ['export' => true]); ?>"><?php echo __(
+                                'Click here to EXPORT Magento Subscribers.'
+                            ) ?> </a><br><em><?php echo __(
+                                'This process may take a few minute. You will get an email when this process is complete. You should import the resulting file into your E-Goi Account'
+                            ) ?></em>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->getUrl('*/*/refresh'); ?>"><?php echo __(
+                                'Click here to sync local Magento Subscribers.'
+                            ) ?> </a><br><em><?php echo __(
+                                'This process may take a few minutes. Your core Magento susbcribers will be merged with E-Goi'
+                            ) ?></em>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('Sync Data') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->getUrl('*/*/sync'); ?>"><?php echo __(
+                                'Click here to sync Magento/E-Goi data now.'
+                            ) ?> </a><br><em><?php echo __(
+                                'This process will run in background and may take a while'
+                            ) ?></em>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-item">
+        <div class="dashboard-item-title"><?php echo __('Clear Data') ?></div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="lastOrdersGrid_table">
+                <tbody>
+                <tr>
+                    <td>
+                        <a onclick="if(!confirm('Are you sure?')){return false;}"
+                                href="<?php echo $this->getUrl('*/*/clear'); ?>"><?php echo __(
+                                'Click here to clear all your data and disconnect from E-Goi'
+                            ) ?>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

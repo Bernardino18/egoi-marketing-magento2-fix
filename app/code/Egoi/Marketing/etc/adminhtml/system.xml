@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="egoi" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="1">
+            <class>separator-top</class>
+            <label>E-Goi Marketing</label>
+            <tab>customer</tab>
+            <resource>Egoi_Marketing::config</resource>
+            <group id="info" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="1">
+                <label>Account Configuration</label>
+                <field id="cellphone" sortOrder="10" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Cellphone Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\Cellphone</source_model>
+                    <comment>Assign the Address Attribute Code to customer's cellphone. Usually "Phone Number"</comment>
+                </field>
+                <field id="analytics" sortOrder="20" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>E-Goi Track &amp; Engage</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="webpush" sortOrder="22" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Enable WebPush</label>
+                    <source_model>Egoi\Marketing\Model\Source\WebsitePush</source_model>
+                </field>
+                <field id="merge" sortOrder="25" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Merge Contacts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If we should sync subscribers from E-Goi back to Magento (Only affects cron and not callback)</comment>
+                </field>
+                <field id="previous" sortOrder="26" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Sync previous subscribers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If we should sync existing subscribers to E-Goi from Magento</comment>
+                </field>
+                <field id="auto" sortOrder="30" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Automatically subscribe customer after order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sender" sortOrder="40" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>SMS Sender (For autoresponders)</label>
+                    <source_model>Egoi\Marketing\Model\Source\Sender</source_model>
+                </field>
+                <field id="method" sortOrder="50" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Send SMS using</label>
+                    <source_model>Egoi\Marketing\Model\Source\Method</source_model>
+                    <comment>If your plan includes SMS's, you should choose the Campaign option</comment>
+                </field>
+            </group>
+            <group id="transactional" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="20">
+                <label>Transactional Emails</label>
+                <field id="enable" sortOrder="10" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Enable Transactional Emails</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable Sending Transactional Emails Trough E-Goi</comment>
+                </field>
+                <field id="username" sortOrder="20" showInDefault="1" type="text" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Username</label>
+                    <comment>Your E-Goi account login username</comment>
+                </field>
+                <field id="password" sortOrder="30" showInDefault="1" type="password" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Password</label>
+                    <comment>Your E-Goi account login password</comment>
+                </field>
+                <field id="domain" sortOrder="40" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Domain</label>
+                    <source_model>Egoi\Marketing\Model\Source\Domains</source_model>
+                </field>
+                <field id="test" sortOrder="50" showInDefault="1" type="text" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Test Settings</label>
+                    <comment>Please remember to save any changes prior to testing</comment>
+                    <frontend_model>Egoi\Marketing\Block\Adminhtml\System\Config\Form\Field\TestTransactional</frontend_model>
+                </field>
+            </group>
+            <group id="products" showInWebsite="0" showInStore="1" showInDefault="0" sortOrder="20">
+                <label>Catalog Sync</label>
+                <field id="enable" sortOrder="10" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Enable Catalog Sync</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="configurable" sortOrder="11" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Sync Childs from Configurable Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--
+                <field id="catalog_id" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Catalog</label>
+                    <source_model>Egoi\Marketing\Model\Source\Catalogs</source_model>
+                </field>
+                -->
+                <field id="ean" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Map EAN (European Article Numbering) Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\ProductAttributes</source_model>
+                </field>
+                <field id="upc" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Map UPC (Universal Product Code) Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\ProductAttributes</source_model>
+                </field>
+                <field id="mpn" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Map MPN (Manufacturer Part Number) Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\ProductAttributes</source_model>
+                </field>
+                <field id="gtin" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Map GTIN (Global Trade Item Number) Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\ProductAttributes</source_model>
+                </field>
+                <field id="brand" sortOrder="50" showInDefault="0" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Map Brand Attribute</label>
+                    <source_model>Egoi\Marketing\Model\Source\ProductAttributes</source_model>
+                </field>
+            </group>
+            <group id="test" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="30">
+                <label>Test</label>
+                <field id="number" sortOrder="10" showInDefault="1" type="text" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Mobile Number</label>
+                    <comment>Format: CC-XXXXXXX. Eg: 351-908934778. The above phone number will receive a test Message</comment>
+                </field>
+                <field id="test" sortOrder="20" showInDefault="1" type="text" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Mobile Number</label>
+                    <comment>Please remember to save any changes prior to testing</comment>
+                    <frontend_model>Egoi\Marketing\Block\Adminhtml\System\Config\Form\Field\Test</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

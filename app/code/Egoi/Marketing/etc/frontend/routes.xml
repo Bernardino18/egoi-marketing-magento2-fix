@@ -1,0 +1,16 @@
+<?xml version="1.0"?><!--
+
+/**
+ * E-goi.com
+ * @title      E-Goi Multi-channel Marketing
+ * @package    E-Goi
+ * @copyright  Copyright (c) 2012-2018 E-Goi - http://e-goi.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="egoi" frontName="egoi">
+            <module name="Egoi_Marketing"/>
+        </route>
+    </router>
+</config>

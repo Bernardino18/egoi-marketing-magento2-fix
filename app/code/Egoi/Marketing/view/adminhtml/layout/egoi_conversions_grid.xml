@@ -1,0 +1,16 @@
+<?xml version="1.0"?><!--
+
+/**
+ * E-goi.com
+ * @title      E-Goi Multi-channel Marketing
+ * @package    E-Goi
+ * @copyright  Copyright (c) 2012-2018 E-Goi - http://e-goi.com
+ */
+
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="formkey"/>
+    <container name="root">
+        <block class="Egoi\Marketing\Block\Adminhtml\Conversions\Grid" name="adminhtml.egoi.conversions.container"/>
+    </container>
+</layout>
