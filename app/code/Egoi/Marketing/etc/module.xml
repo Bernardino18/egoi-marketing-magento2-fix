@@ -8,5 +8,5 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Egoi_Marketing" setup_version="3.17.0"></module>
+    <module name="Egoi_Marketing" setup_version="3.17.1"></module>
 </config>
