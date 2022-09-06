@@ -465,7 +465,7 @@ class Subscriber extends \Magento\Framework\Model\AbstractModel
             try {
                 $this->_subscriberFactory->create()->setData($data)->save();
             } catch (\Exception $e) {
-                $this->_egoiHelper->getLogger('warn')->warn($e->getMessage());
+                $this->_egoiHelper->getLogger('warn')->warning($e->getMessage());
             }
         }
     }
@@ -682,7 +682,7 @@ class Subscriber extends \Magento\Framework\Model\AbstractModel
                 }
             }
         } catch (\Exception $e) {
-            $this->_egoiHelper->getLogger('warn')->warn($e->getMessage());
+            $this->_egoiHelper->getLogger('warn')->warning($e->getMessage());
         }
 
         return parent::save();
